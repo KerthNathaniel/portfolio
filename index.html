@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Arcane Portfolio · responsive magic</title>
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -89,7 +88,7 @@
       transition: opacity 0.05s; z-index: 10; mix-blend-mode: overlay;
     }
 
-    /* ---------- NAVBAR (fully responsive) ---------- */
+    /* ---------- NAVBAR ---------- */
     .navbar {
       position: fixed; top: 0; left: 0; width: 100%;
       display: flex; align-items: center; justify-content: space-between;
@@ -154,7 +153,7 @@
 
     #explosion-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 300; }
 
-    /* ------------------ MAIN PORTFOLIO (responsive) ----------------- */
+    /* ------------------ MAIN PORTFOLIO ----------------- */
     #portfolio {
       opacity: 0; visibility: hidden;
       transition: opacity 1.2s ease 0.3s, visibility 1.2s ease 0.3s;
@@ -216,12 +215,12 @@
       opacity: 0; margin-top: 0;
     }
     .skills-content.expanded { 
-      max-height: 800px; /* increased for mobile stacking */ 
+      max-height: 800px; 
       opacity: 1; 
       margin-top: 1.5rem; 
     }
 
-    /* skill chips – responsive wrap */
+    /* skill chips */
     .skill-chip {
       background: rgba(68, 50, 120, 0.5); border: 1px solid #7b64c4;
       border-radius: 40px; padding: 0.6rem 1.2rem; font-weight: 600;
@@ -257,7 +256,7 @@
 
     .skill-chip:hover { transform: scale(1.03); border-color: #e2c4ff; background: transparent; }
 
-    /* projects grid – fully responsive */
+    /* projects grid */
     .grid-3 {
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); 
@@ -329,7 +328,7 @@
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     .stagger-1 { animation-delay: 0.1s; } .stagger-2 { animation-delay: 0.2s; } .stagger-3 { animation-delay: 0.3s; }
 
-    /* small adjustments */
+    
     @media (max-width: 600px) {
       .intro-wrap { flex-direction: column; text-align: center; }
       .scroll-header .scroll-arrow { font-size: 1.4rem; }
@@ -344,7 +343,7 @@
 </head>
 <body>
 
-  <!-- THUNDERSTORM BACKGROUND (responsive cloud sizes already in %) -->
+  <!-- THUNDERSTORM BACKGROUND -->
   <div class="storm-background">
     <div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="cloud cloud3"></div>
     <div class="cloud cloud4"></div><div class="cloud cloud5"></div><div class="cloud cloud6"></div>
@@ -352,7 +351,7 @@
   </div>
   <div class="thunder-overlay" id="thunderOverlay"></div>
 
-  <!-- NAVBAR (now responsive with wrap) -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="thunder-toggle" id="thunderToggle">
       <i class="fas fa-bolt"></i> <span id="toggleText">Thunder On</span>
@@ -368,7 +367,7 @@
   <!-- EXPLOSION CANVAS -->
   <canvas id="explosion-canvas"></canvas>
 
-  <!-- LANDING (text scales) -->
+  <!-- LANDING -->
   <div id="landing">
     <div class="wizard-podium" id="wizard-trigger">
       <span class="wizard-figure float-animation"><i class="fas fa-hat-wizard"></i></span>
@@ -416,7 +415,7 @@
       </div>
     </section>
 
-    <!-- projects (grid with auto-fit) -->
+    <!-- projects -->
     <section id="projects" style="margin-bottom: 3rem;">
       <h2 class="section-title fade-in-up stagger-3">🔮 enchanted projects</h2>
       <div class="grid-3">
@@ -524,7 +523,7 @@
           setTimeout(() => { lightningEl.style.opacity = '0'; overlayEl.style.opacity = '0'; }, 70); }, 160);
       }
 
-      function startThunder() { if (thunderInterval) clearInterval(thunderInterval); thunderInterval = setInterval(thunderstrike, 5000); setTimeout(thunderstrike, 200); }
+      function startThunder() { if (thunderInterval) clearInterval(thunderInterval); thunderInterval = setInterval(thunderstrike, 10000); setTimeout(thunderstrike, 200); }
       function stopThunder() { if (thunderInterval) { clearInterval(thunderInterval); thunderInterval = null; } lightningEl.style.opacity = '0'; overlayEl.style.opacity = '0'; }
       startThunder();
 
@@ -534,7 +533,7 @@
         else { stopThunder(); toggleBtn.classList.add('off'); toggleSpan.innerText = 'Thunder Off'; }
       });
 
-      // wizard explosion
+      
       const landing = document.getElementById('landing');
       const portfolio = document.getElementById('portfolio');
       const wizardBtn = document.getElementById('wizard-trigger');
@@ -602,10 +601,10 @@
         const centerX = rect.left + rect.width/2; const centerY = rect.top + rect.height/2 - 20;
         createExplosion(centerX, centerY);
         landing.classList.add('hidden'); portfolio.classList.add('show');
-        window.location.hash = '#about'; // smooth but optional
+        window.location.hash = '#about'; 
       });
 
-      // skills scroll toggle
+      
       const scrollHeader = document.getElementById('scrollHeader');
       const skillsContent = document.getElementById('skillsContent');
       const scrollArrow = document.getElementById('scrollArrow');
@@ -615,7 +614,7 @@
         scrollArrow.style.transform = isExpanding ? 'rotate(180deg)' : 'rotate(0deg)';
       });
 
-      // profile image thunder click
+      
       const profileImg = document.getElementById('avatar-img');
       if (profileImg) {
         profileImg.addEventListener('click', (e) => {
